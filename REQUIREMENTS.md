@@ -26,12 +26,14 @@ These are the notes from a meeting with the frontend developer that describe wha
 - name
 - price
 - [OPTIONAL] category
+Table: Products (id:serial, name:varchar, price:decimal)
 
 #### User
 - id
 - firstName
 - lastName
 - password
+Table: Users (id:serial, username:varchar, first_name:varchar , last_name:varchar , password:varchar)
 
 #### Orders
 - id
@@ -39,4 +41,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
+Table: Orders (id:serial , user_id:[FORIGN-KEY] , status:enum(active-completed))
+Table: Order_Products (id:serial , order_id:[FORIGN-KEY] , product_id:[FORIGN-KEY] ,product_quantity:int)
 
