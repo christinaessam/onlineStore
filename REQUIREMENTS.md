@@ -41,6 +41,9 @@ Table: Users (id:serial, username:varchar, first_name:varchar , last_name:varcha
 - quantity of each product in the order
 - user_id
 - status of order (active or complete)
-Table: Orders (id:serial , user_id:[FORIGN-KEY] , status:enum(active-completed))
+Table: Orders (id:serial , user_id:[FORIGN-KEY] , status:varchar)
 Table: Order_Products (id:serial , order_id:[FORIGN-KEY] , product_id:[FORIGN-KEY] ,product_quantity:int)
 
+## customize your environment 
+you need to create database named [onlinestore] for development and another one named [onlineStore_test] for testing.
+update [database.json] file with your database username and password
