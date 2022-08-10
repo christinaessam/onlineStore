@@ -9,7 +9,7 @@
     "test": {
         "driver": "pg",
         "host": "localhost",
-        "database": "onlineStore_test",
+        "database": "onlinestore_test",
         "user": "admin",
         "password": "my_password"
     }

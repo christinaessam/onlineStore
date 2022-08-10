@@ -6,6 +6,7 @@ dotenv.config();
 const { DB_HOST, DB_NAME, DB_USER, DB_PASSWORD, DB_TEST_NAME, ENV } =
 	process.env; 
 
+console.log(ENV);
 let db:Pool ;
 if (ENV == "dev") {
 	db = new Pool({
