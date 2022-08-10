@@ -1,9 +1,7 @@
 import express,{ Request, Response} from 'express';
 import { Product , ProductModel} from '../models/product';
 import * as bodyParser from 'body-parser';
-import jwt from "jsonwebtoken";
-
-const {TOKEN_SECRET} =process.env; 
+import { verifyAuthToken } from './user_routes';
 
 const products=new ProductModel();
 
@@ -41,24 +39,6 @@ const index = async (req: Request, res: Response) => {
 }
 
 
-const verifyAuthToken = (req: Request, res: Response, next:Function) => {
-    try {
-        const authorizationHeader = req.headers.authorization;
-        if(authorizationHeader){
-             const token = authorizationHeader.split(' ')[1]
-            const decoded = jwt.verify(token, TOKEN_SECRET as string)
-        next()
-            
-        }else{
-            res.status(401)
-            res.send("Unauthorized product")
-        }
-    } catch (error) {
-        res.status(401)
-        res.send("Unauthorized product ")
-
-    }
-}
 
 var jsonParser = bodyParser.json();
 const productRoutes = (app: express.Application) => {

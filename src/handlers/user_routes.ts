@@ -83,3 +83,4 @@ const userRoutes = (app: express.Application) => {
 }
   
 export default userRoutes;
+export {verifyAuthToken};

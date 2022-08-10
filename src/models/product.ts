@@ -1,13 +1,10 @@
 import db from "../database";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
 export type Product = {
 	id?: number;
 	name: string;
 	price?: number;
 };
-const { PEPPER, SALT, TOKEN_SECRET } = process.env;
 
 export class ProductModel {
 	async index(): Promise<Product[]> {
