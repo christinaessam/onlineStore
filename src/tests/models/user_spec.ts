@@ -1,5 +1,6 @@
 import { User , UserModel} from '../../models/user';
 import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
 const users=new UserModel();
 const { PEPPER, SALT, TOKEN_SECRET } = process.env;
@@ -10,60 +11,49 @@ describe("User Model", () => {
   });
 
   it('should have a show method', () => {
-    expect(users.index).toBeDefined();
+    expect(users.show).toBeDefined();
   });
 
   it('should have a create method', () => {
-    expect(users.index).toBeDefined();
+    expect(users.create).toBeDefined();
   });
 
-  it('should have a update method', () => {
-    expect(users.index).toBeDefined();
-  });
-
-  it('should have a delete method', () => {
-    expect(users.index).toBeDefined();
-  });
-
+  let password:string;
   it('create method should add a user and returns the user token', async () => {
     const user: User = {
-        id:1,
         username: "christinaessam",
         firstname: "christina",
         lastname: "essam",
         password:"testfirstpass"
     }
     const result = await users.create(user);
-    const token = jwt.sign(user, TOKEN_SECRET as string);
+    const u=await users.show("17")
+    user.id=17;
+    password=u.password;
+    const token = jwt.sign(u, TOKEN_SECRET as string);
     expect(result).toEqual(token);
   });
 
   it('index method should return a list of users', async () => {
     const result = await users.index();
     expect(result).toEqual([{
-        id:1,
+        id:17,
         username: "christinaessam",
         firstname: "christina",
         lastname: "essam",
-        password:"$2b$10$Wv.ilDZi5kMIUR9K/hkmVOZ5R3tWFypgYf6nxwk8qpyEawjCEfLlO"
+        password:password
     }]);
   });
 
   it('show method should return the correct user', async () => {
-    const result = await users.show("1");
+    const result = await users.show("17");
     expect(result).toEqual({
-        id:1,
+        id:17,
         username: "christinaessam",
         firstname: "christina",
         lastname: "essam",
-        password:"$2b$10$Wv.ilDZi5kMIUR9K/hkmVOZ5R3tWFypgYf6nxwk8qpyEawjCEfLlO"
+        password:password
     });
   });
 
-//   it('delete method should remove the user', async () => {
-//     users.delete("1");
-//     const result = await users.index()
-
-//     expect(result).toEqual([]);
-//   });
 });

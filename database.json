@@ -1,16 +1,16 @@
 {
     "dev": {
-        "driver": "pg",
-        "host": "localhost",
-        "database": "onlinestore",
-        "user": "admin",
-        "password": "my_password"
+        "driver":"pg",
+        "host": {"ENV": "DB_HOST"},
+        "database": {"ENV": "DB_NAME"},
+        "user": {"ENV": "DB_USER"},
+        "password": {"ENV": "DB_PASSWORD"}
     },
     "test": {
         "driver": "pg",
-        "host": "localhost",
-        "database": "onlinestore_test",
-        "user": "admin",
-        "password": "my_password"
+        "host": {"ENV": "DB_HOST"},
+        "database": {"ENV": "DB_TEST_NAME"},
+        "user":{"ENV": "DB_USER"},
+        "password": {"ENV": "DB_PASSWORD"}
     }
 }
