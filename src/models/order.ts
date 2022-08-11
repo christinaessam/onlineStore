@@ -78,4 +78,20 @@ export class OrderModel {
 		}
     }
 
+	async getCompleted(userId:string):Promise<Order[]>{
+		try {
+			const conn = await db.connect();
+			const sql =
+				"SELECT * FROM orders WHERE user_id=$1 AND status='complete' ";
+
+			const result = await conn.query(sql, [userId]);
+			conn.release();
+			const orders:Order[]= result.rows;
+			return orders;
+		} catch (err) {
+			throw new Error(`Could not update order . Error: ${err}`);
+		}
+
+	}
+
 }

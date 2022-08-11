@@ -2,6 +2,7 @@ import express,{ Request, Response} from 'express';
 import { Product , ProductModel} from '../models/product';
 import { Order , OrderModel} from '../models/order';
 import * as bodyParser from 'body-parser';
+import { verifyAuthToken } from './user_routes';
 // import { verifyAuthToken } from './user_routes';
 
 const products=new ProductModel();
@@ -65,6 +66,18 @@ const checkout= async (req: Request, res: Response) => {
      }
     
 }
+const getCompleted= async (req: Request, res: Response) => {
+    const userId=req.params.id;
+    console.log(userId);
+    try {
+        const result = await orders.getCompleted(userId);
+        res.json(result);
+    } catch(err) {
+        res.status(400)
+        res.json(err)
+    }
+
+}
 
 var jsonParser = bodyParser.json();
 const orderRoutes = (app: express.Application) => {
@@ -73,8 +86,7 @@ const orderRoutes = (app: express.Application) => {
     app.post('/users/:id/orders', jsonParser,create)
     app.post('/orders/:id/products/:pid',jsonParser,addProductToOrder)
     app.put('/orders/:id',jsonParser,checkout)
-
-    // app.delete('/orders/:id', jsonParser,destroy)
+    app.get('/orders/completed/user/:id',jsonParser,verifyAuthToken, getCompleted)
 }
   
 export default orderRoutes;

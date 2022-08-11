@@ -38,14 +38,22 @@ const index = async (req: Request, res: Response) => {
     }
 }
 
-
+const topProducts = async (req: Request, res: Response)=>{
+    try {
+        const top_products = await products.topProducts();
+        res.json(top_products)
+    } catch(err) {
+        res.status(400)
+        res.json(err)
+    }
+}
 
 var jsonParser = bodyParser.json();
 const productRoutes = (app: express.Application) => {
     app.get('/products', jsonParser,index)
     app.get('/products/:id',jsonParser, show)
     app.post('/products', jsonParser,verifyAuthToken,create)
-    // app.delete('/products/:id', jsonParser,destroy)
+    app.get('/top_products',jsonParser, topProducts)
 }
   
 export default productRoutes;
