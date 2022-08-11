@@ -1,11 +1,9 @@
 import express,{ Request, Response} from 'express';
-import { Product , ProductModel} from '../models/product';
+import { ProductModel} from '../models/product';
 import { Order , OrderModel} from '../models/order';
 import * as bodyParser from 'body-parser';
 import { verifyAuthToken } from './user_routes';
-// import { verifyAuthToken } from './user_routes';
 
-const products=new ProductModel();
 const orders=new OrderModel();
 
 const create = async (req: Request, res: Response) => {

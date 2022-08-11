@@ -3,9 +3,6 @@
   "spec_files": [
     "**/*[sS]pec.js"
   ],
-  "env": {
-    "ENV": "test"
-  },
   "helpers": [
     "helpers/**/*.js"
   ],

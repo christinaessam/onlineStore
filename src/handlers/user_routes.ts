@@ -79,7 +79,6 @@ const userRoutes = (app: express.Application) => {
     app.get('/users/:id',jsonParser,verifyAuthToken, show)
     app.post('/users', jsonParser,create)
     app.post('/users/signin',jsonParser,authentication)
-    // app.delete('/users/:id', jsonParser,destroy)
 }
   
 export default userRoutes;

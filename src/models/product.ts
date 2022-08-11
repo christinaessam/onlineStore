@@ -45,14 +45,14 @@ export class ProductModel {
 			throw new Error(`Could not add new product. Error: ${err}`);
 		}
 	}
-	async topProducts(): Promise<any[]> {
+	async topProducts(): Promise<[]> {
 		try {
 			const conn = await db.connect();
 			const sql =
-				"select name ,sum(updated_quantity) from (select name,case when product_quantity is null then 0 else product_quantity end as updated_quantity  from order_products full outer join products on products.id=product_id) as p group by name order by sum desc limit 5";
+				"SELECT name ,sum(updated_quantity) FROM (SELECT name,case WHEN product_quantity is null then 0 else product_quantity end as updated_quantity  FROM order_products full outer join products on products.id=product_id) as p group by name order by sum desc limit 5";
 			const result = await conn.query(sql);
 			conn.release();
-			return result.rows;
+			return result.rows as [];
 		} catch (err) {
 			throw new Error(`Could not get top products. Error: ${err}`);
 		}
