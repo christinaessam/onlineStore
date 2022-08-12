@@ -66,9 +66,19 @@ const checkout= async (req: Request, res: Response) => {
 }
 const getCompleted= async (req: Request, res: Response) => {
     const userId=req.params.id;
-    console.log(userId);
     try {
         const result = await orders.getCompleted(userId);
+        res.json(result);
+    } catch(err) {
+        res.status(400)
+        res.json(err)
+    }
+
+}
+const getCurrentOrderByUser= async (req: Request, res: Response) => {
+    const userId=req.params.id;
+    try {
+        const result = await orders.getcurrentUserOrder(userId);
         res.json(result);
     } catch(err) {
         res.status(400)
@@ -82,6 +92,7 @@ const orderRoutes = (app: express.Application) => {
     app.get('/orders', jsonParser,index)
     app.get('/orders/:id',jsonParser, show)
     app.post('/users/:id/orders', jsonParser,create)
+    app.get('/users/:id/orders', jsonParser,getCurrentOrderByUser)
     app.post('/orders/:id/products/:pid',jsonParser,addProductToOrder)
     app.put('/orders/:id',jsonParser,checkout)
     app.get('/orders/completed/user/:id',jsonParser,verifyAuthToken, getCompleted)

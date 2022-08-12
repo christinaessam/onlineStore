@@ -17,30 +17,30 @@ describe("Order Model", () => {
     expect(orders.create).toBeDefined();
   });
 
-  it('create method should add a order', async () => {
+  it('create method should add an order', async () => {
     const order: Order = {
-        user_id: 17,
+        user_id: 1,
         status:"active"
     }
     const result = await orders.create(order);
-    order.id=5;
+    order.id=1;
     expect(result).toEqual(order);
   });
 
   it('index method should return a list of orders', async () => {
     const result = await orders.index();
     expect(result).toEqual([{
-        id:5,
-        user_id: 17,
+        id:1,
+        user_id: 1,
         status:"active"
     }]);
   });
 
   it('show method should return the correct order', async () => {
-    const result = await orders.show("5");
+    const result = await orders.show("1");
     expect(result).toEqual({
-        id:5,
-        user_id: 17,
+        id:1,
+        user_id: 1,
         status:"active"
     });
   });

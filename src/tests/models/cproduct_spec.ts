@@ -23,23 +23,23 @@ describe("Product Model", () => {
         price: 100
     }
     const result = await products.create(product);
-    product.id=2;
+    product.id=1;
     expect(result).toEqual(product);
   });
 
   it('index method should return a list of products', async () => {
     const result = await products.index();
     expect(result).toEqual([{
-        id:2,
+        id:1,
         name: 'Product1',
         price: 100
     }]);
   });
 
   it('show method should return the correct product', async () => {
-    const result = await products.show("2");
+    const result = await products.show("1");
     expect(result).toEqual({
-        id:2,
+        id:1,
         name: 'Product1',
         price: 100
     });

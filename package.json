@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "export NODE_ENV=test && db-migrate reset --env test up && jasmine && db-migrate db:drop test",
+    "test": "export NODE_ENV=test && db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
     "tsc": "tsc",
     "build": "npx tsc",
     "lint": "npx eslint --ext .ts src/",
@@ -35,10 +35,12 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/nodemon": "^1.19.2",
     "@types/pg": "^7.14.7",
+    "@types/supertest": "^2.0.12",
     "jasmine": "^3.99.0",
     "jasmine-console-reporter": "^3.1.0",
     "jasmine-spec-reporter": "^6.0.0",
     "jasmine-ts": "^0.3.0",
+    "supertest": "^6.2.4",
     "tsc-watch": "^4.2.9"
   }
 }

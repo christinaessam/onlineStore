@@ -27,8 +27,8 @@ describe("User Model", () => {
         password:"testfirstpass"
     }
     const result = await users.create(user);
-    const u=await users.show("17")
-    user.id=17;
+    const u=await users.show("1")
+    user.id=1;
     password=u.password;
     const token = jwt.sign(u, TOKEN_SECRET as string);
     expect(result).toEqual(token);
@@ -37,7 +37,7 @@ describe("User Model", () => {
   it('index method should return a list of users', async () => {
     const result = await users.index();
     expect(result).toEqual([{
-        id:17,
+        id:1,
         username: "christinaessam",
         firstname: "christina",
         lastname: "essam",
@@ -46,9 +46,9 @@ describe("User Model", () => {
   });
 
   it('show method should return the correct user', async () => {
-    const result = await users.show("17");
+    const result = await users.show("1");
     expect(result).toEqual({
-        id:17,
+        id:1,
         username: "christinaessam",
         firstname: "christina",
         lastname: "essam",
