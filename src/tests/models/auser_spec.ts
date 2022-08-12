@@ -1,6 +1,7 @@
 import { User , UserModel} from '../../models/user';
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+let userToken:string="";
 
 const users=new UserModel();
 const { PEPPER, SALT, TOKEN_SECRET } = process.env;
@@ -21,12 +22,13 @@ describe("User Model", () => {
   let password:string;
   it('create method should add a user and returns the user token', async () => {
     const user: User = {
-        username: "christinaessam",
+        username: "christinaaessam",
         firstname: "christina",
         lastname: "essam",
         password:"testfirstpass"
     }
     const result = await users.create(user);
+    userToken=result;
     const u=await users.show("1")
     user.id=1;
     password=u.password;
@@ -38,7 +40,7 @@ describe("User Model", () => {
     const result = await users.index();
     expect(result).toEqual([{
         id:1,
-        username: "christinaessam",
+        username: "christinaaessam",
         firstname: "christina",
         lastname: "essam",
         password:password
@@ -49,7 +51,7 @@ describe("User Model", () => {
     const result = await users.show("1");
     expect(result).toEqual({
         id:1,
-        username: "christinaessam",
+        username: "christinaaessam",
         firstname: "christina",
         lastname: "essam",
         password:password
@@ -57,3 +59,5 @@ describe("User Model", () => {
   });
 
 });
+
+export default userToken;

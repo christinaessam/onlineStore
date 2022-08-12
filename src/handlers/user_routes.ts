@@ -58,7 +58,7 @@ const verifyAuthToken = (req: Request, res: Response, next:Function) => {
     try {
         const authorizationHeader = req.headers.authorization;
         if(authorizationHeader){
-             const token = authorizationHeader.split(' ')[1]
+            const token = authorizationHeader.split(' ')[1]
             const decoded = jwt.verify(token, TOKEN_SECRET as string)
         next()
             

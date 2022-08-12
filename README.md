@@ -23,6 +23,9 @@ CREATE DATABASE onlinestore_test;
 \c onlinestore_test
 GRANT ALL PRIVILEGES ON DATABASE onlinestore_test TO username123;
 `
+
+## notes
+before testing you shloud run [ npm run build ] 
 ## Local host ports
 -for the database, port is not specified so it will run on the selected port for postgres installation (default is 5432)
 -server is running on port 3000

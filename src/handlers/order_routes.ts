@@ -89,12 +89,12 @@ const getCurrentOrderByUser= async (req: Request, res: Response) => {
 
 var jsonParser = bodyParser.json();
 const orderRoutes = (app: express.Application) => {
-    app.get('/orders', jsonParser,index)
-    app.get('/orders/:id',jsonParser, show)
-    app.post('/users/:id/orders', jsonParser,create)
-    app.get('/users/:id/orders', jsonParser,getCurrentOrderByUser)
-    app.post('/orders/:id/products/:pid',jsonParser,addProductToOrder)
-    app.put('/orders/:id',jsonParser,checkout)
+    app.get('/orders', jsonParser,verifyAuthToken,index)
+    app.get('/orders/:id',jsonParser, verifyAuthToken,show)
+    app.post('/users/:id/orders', jsonParser,verifyAuthToken,create)
+    app.get('/users/:id/orders', jsonParser,verifyAuthToken,getCurrentOrderByUser)
+    app.post('/orders/:id/products/:pid',jsonParser,verifyAuthToken,addProductToOrder)
+    app.put('/orders/:id',jsonParser,verifyAuthToken,checkout)
     app.get('/orders/completed/user/:id',jsonParser,verifyAuthToken, getCompleted)
 }
   
