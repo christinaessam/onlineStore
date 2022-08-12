@@ -98,35 +98,3 @@ describe("Order EndPoint Responses Tests ", ():void => {
         expect(res.status).toBe(200);
     });
 });
-// describe('Protected Routes Tests', ():void => {
-//     let token:string ;
-//     beforeAll(async function() {
-//         const user: User = {
-//             username: "christinaaaessam",
-//             firstname: "christina",
-//             lastname: "essam",
-//             password:"testfirstnewpass"
-//         }
-//         const result = await users.create(user);
-//         token =result;
-//     });
-    
-//     it('Get all orders', async function() {
-//         // console.log("userToken: ",token);
-//         const res = await request.get("/orders").set("Authorization",`Bearer ${token}`);
-//         expect(res.status).toBe(200); 
-//     });
-    
-//     it('Get order with id ', async function() {
-//         // console.log("userToken: ",token);
-//         const res = await request.get("/orders/1").set("Authorization",`Bearer ${token}`);
-//         expect(res.status).toBe(200); 
-//     });
-
-//     it('Get user orders ', async function() {
-//         // console.log("userToken: ",token);
-//         const res = await request.get("/users/1/orders").set("Authorization",`Bearer ${token}`);
-//         expect(res.status).toBe(200); 
-//     });
-
-// });
